@@ -143,10 +143,24 @@ class RemoteAgent():
 
     def _post_and_get(self, obs: Dict[str, Any], debug: bool = False) -> None:
         """Send observation data to the model server and turn the received delta action chunk into absolute actions."""
+        if "depth_array" in obs:
+            depth_front = obs["depth_array"]
+        else:
+            h, w = obs["front_view_image"].shape[:2]
+            depth_front = np.zeros((h, w, 1), dtype=np.float32)
+        if "depth_wrist_array" in obs:
+            depth_wrist = obs["depth_wrist_array"]
+        else:
+            h, w = obs["side_view_image"].shape[:2]
+            depth_wrist = np.zeros((h, w, 1), dtype=np.float32)
+
         data = {
-            'front_view_image': [obs["front_view_image"][::-1]],
-            'side_view_image': [obs["side_view_image"][::-1]],
+            'image_array': [obs["front_view_image"][::-1]],
+            'image_wrist_array': [obs["side_view_image"][::-1]],
+            'depth_array': [depth_front[::-1]],
+            'depth_wrist_array': [depth_wrist[::-1]],
             'proprio_array': [np.copy(proprio) for proprio in self.proprio_history],
+            'env_id': 1,
             'text': self.instruction,
         }
         self.socket.send_pyobj(data)

@@ -3,7 +3,8 @@ defaults:
   - _self_
 
 # Agent communication
-port: 6666
+port: 6680
+# port: 6666
 debug: false
 
 # Experiment parameters

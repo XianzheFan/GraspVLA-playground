@@ -36,11 +36,16 @@ def validate_server(host: str = "127.0.0.1", port: int = 8000, timeout: int = 5)
         # Create test data matching agent.py format
         mock_image = np.random.randint(0, 255, (256, 256, 3), dtype=np.uint8)
         mock_proprio = [np.random.randn(7) for _ in range(4)]
+        mock_depth = np.zeros((256, 256, 1), dtype=np.float32)
+        mock_depth_wrist = np.zeros((256, 256, 1), dtype=np.float32)
         
         test_data = {
-            'front_view_image': [mock_image],
-            'side_view_image': [mock_image],
+            'image_array': [mock_image],
+            'image_wrist_array': [mock_image],
+            'depth_array': [mock_depth],
+            'depth_wrist_array': [mock_depth_wrist],
             'proprio_array': mock_proprio,
+            'env_id': 1,
             'text': 'Validation test instruction',
         }
         

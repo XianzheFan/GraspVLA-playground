@@ -11,9 +11,9 @@
   
 robot_cfg:
   kinematics:
-    urdf_path: "/mnt/afs/grasp-sim/yanmi/LIBERO-test/assets/franka_with_extended_finger/franka_with_extended_finger.urdf"
-    asset_root_path: "/mnt/afs/grasp-sim/yanmi/LIBERO-test/assets/franka_with_extended_finger"
-    collision_spheres: "/mnt/afs/grasp-sim/yanmi/LIBERO-test/assets/franka_with_extended_finger/collision_spheres.yml"
+    urdf_path: "/mnt/afs/fanxianzhe/GraspVLA-playground/assets/franka_with_extended_finger/franka_with_extended_finger.urdf"
+    asset_root_path: "/mnt/afs/fanxianzhe/GraspVLA-playground/assets/franka_with_extended_finger"
+    collision_spheres: "/mnt/afs/fanxianzhe/GraspVLA-playground/assets/franka_with_extended_finger/collision_spheres.yml"
     use_usd_kinematics: False
     usd_robot_root: "/panda"
     usd_flip_joints: ["panda_joint1","panda_joint2","panda_joint3","panda_joint4", "panda_joint5",
