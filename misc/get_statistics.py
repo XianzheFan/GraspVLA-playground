@@ -23,7 +23,6 @@ from termcolor import colored
 @hydra.main(version_base=None, config_path="../config", config_name="get_statistics")
 def main(cfg: DictConfig) -> None:
     """Main function to compute statistics."""
-    
     print(colored(f"Computing statistics for {cfg.name}", "yellow"))
     
     video_dir = os.path.join('data', cfg.name, 'videos')
@@ -54,8 +53,46 @@ def main(cfg: DictConfig) -> None:
         num = len(prefix_videos)
         if num == 0:
             continue
-        success_num = np.sum([1 for video in prefix_videos if 'success' in video])
-        fail_num = np.sum([1 for video in prefix_videos if 'fail' in video])
+
+        # Group videos by task and calculate per-task statistics
+        success_num = 0
+        fail_num = 0
+        task_stats = {}
+        for video in prefix_videos:
+            if "x264" not in video:
+                continue
+            # Extract task name from filename
+            # Pattern: prefix_task_X_x264_success/fail.mp4
+            video_base = video.replace('.mp4', '')
+            task_name = video_base.rsplit('_x264_', 1)[0]
+
+            # remove prefix
+            task_name = task_name.replace(prefix_name + '_', '')
+            # remove seed
+            task_name = task_name.rsplit('_', 1)[0]
+            
+            # Initialize task stats if not exists
+            if task_name not in task_stats:
+                task_stats[task_name] = {'success': 0, 'fail': 0}
+            if '_success' in video:
+                success_num += 1
+                task_stats[task_name]['success'] += 1
+            elif '_fail' in video:
+                fail_num += 1
+                task_stats[task_name]['fail'] += 1
+        
+        print(colored(f"\n{prefix_name} per-task statistics:", "yellow"))
+        for task_name in sorted(task_stats.keys()):
+            task_success = task_stats[task_name]['success']
+            task_fail = task_stats[task_name]['fail']
+            task_total = task_success + task_fail
+            if task_total > 0:
+                task_rate = task_success / task_total
+                task_result = f"  {task_name}: {task_success}/{task_total} = {task_rate:.3f}"
+                print(colored(task_result, "cyan"))
+                
+                with open(log_file, 'a') as f:
+                    f.write(f"{task_result}\n")
         
         success_rate = success_num / num if num > 0 else 0.0
         result = f"{prefix_name}: {success_num}/{num} = {success_rate:.3f}"

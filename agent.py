@@ -52,7 +52,8 @@ class RemoteAgent():
             self.socket = self.zmq_context.socket(zmq.REQ)
             self.socket.connect(f"tcp://127.0.0.1:{port}")
             # Set socket timeout to prevent hanging
-            self.socket.setsockopt(zmq.RCVTIMEO, 5000)  # 5 second timeout
+            self.socket.setsockopt(zmq.RCVTIMEO, 40000)  # 40 second timeout (unidepthv2)
+            # self.socket.setsockopt(zmq.RCVTIMEO, 5000)  # 5 second timeout (baseline / simulator depth)
         except Exception as e:
             raise ConnectionError(f"Failed to establish ZMQ connection: {e}")
     
