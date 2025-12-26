@@ -41,7 +41,8 @@ class VideoLogger:
             self.video_name, 
             cv2.VideoWriter_fourcc(*'mp4v'), 
             20, 
-            (256 * 2, 256)
+            (256, 256)
+            # (256 * 2, 256)
         )
     
     def log_frame(self, obs: dict, bbox: Optional[Tuple[np.ndarray, np.ndarray]] = None):
@@ -57,16 +58,17 @@ class VideoLogger:
         
         # Get images and flip them
         front_img = obs["front_view_image"][::-1]
-        wrist_img = obs["side_view_image"][::-1]
+        # wrist_img = obs["side_view_image"][::-1]
         
         # Draw bounding boxes if provided
         if bbox is not None:
             front_img = self._draw_bbox(front_img, bbox[0])
-            wrist_img = self._draw_bbox(wrist_img, bbox[1])
+            # wrist_img = self._draw_bbox(wrist_img, bbox[1])
         
         # Concatenate images and convert color format
-        combined_img = np.concatenate([front_img, wrist_img], axis=1)
-        combined_img = cv2.cvtColor(combined_img, cv2.COLOR_RGB2BGR)
+        # combined_img = np.concatenate([front_img, wrist_img], axis=1)
+        # combined_img = cv2.cvtColor(combined_img, cv2.COLOR_RGB2BGR)
+        combined_img = cv2.cvtColor(front_img, cv2.COLOR_RGB2BGR)
         
         # Write frame
         self.video_writer.write(combined_img)

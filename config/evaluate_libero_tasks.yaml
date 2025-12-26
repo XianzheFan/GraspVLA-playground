@@ -4,6 +4,7 @@ defaults:
 
 # Agent communication
 port: 6680
+# port: 6688
 # port: 6666
 debug: false
 
