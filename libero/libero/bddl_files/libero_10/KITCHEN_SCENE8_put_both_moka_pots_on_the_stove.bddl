@@ -1,6 +1,6 @@
 (define (problem LIBERO_Kitchen_Tabletop_Manipulation)
   (:domain robosuite)
-  (:language pick up moka pot)
+  (:language put both moka pots on the stove)
     (:regions
       (flat_stove_init_region
           (:target kitchen_table)
@@ -63,7 +63,7 @@
   )
 
   (:goal
-    (Or (Grasped moka_pot_1) (Grasped moka_pot_2))
+    (And (On moka_pot_1 flat_stove_1_cook_region) (On moka_pot_2 flat_stove_1_cook_region) (Turnon flat_stove_1))
   )
 
 )

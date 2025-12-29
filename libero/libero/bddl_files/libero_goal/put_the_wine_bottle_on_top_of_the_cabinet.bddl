@@ -1,6 +1,6 @@
 (define (problem LIBERO_Tabletop_Manipulation)
   (:domain robosuite)
-  (:language pick up wine bottle)
+  (:language Put the wine bottle on the top of the drawer)
     (:regions
       (plate_region
           (:target main_table)
@@ -122,7 +122,7 @@
   )
 
   (:goal
-    (And (Grasped wine_bottle_1))
+    (And (On wine_bottle_1 wooden_cabinet_1_top_side))
   )
 
 )

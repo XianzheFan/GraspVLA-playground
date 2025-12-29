@@ -1,6 +1,6 @@
 (define (problem LIBERO_Floor_Manipulation)
   (:domain robosuite)
-  (:language pick up alphabet soup can)
+  (:language Pick the alphabet soup and place it in the basket)
     (:regions
       (bin_region
           (:target floor)
@@ -51,6 +51,9 @@
             )
           )
       )
+      (contain_region
+          (:target basket_1)
+      )
     )
 
   (:fixtures
@@ -59,6 +62,7 @@
 
   (:objects
     alphabet_soup_1 - alphabet_soup
+    basket_1 - basket
     salad_dressing_1 - salad_dressing
     cream_cheese_1 - cream_cheese
     milk_1 - milk
@@ -68,6 +72,7 @@
 
   (:obj_of_interest
     alphabet_soup_1
+    basket_1
   )
 
   (:init
@@ -77,10 +82,11 @@
     (On milk_1 floor_other_object_region_2)
     (On tomato_sauce_1 floor_other_object_region_3)
     (On butter_1 floor_other_object_region_4)
+    (On basket_1 floor_bin_region)
   )
 
   (:goal
-    (Or (Grasped alphabet_soup_1) (Grasped tomato_sauce_1))
+    (And (In alphabet_soup_1 basket_1_contain_region))
   )
 
 )

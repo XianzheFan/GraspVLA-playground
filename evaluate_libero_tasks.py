@@ -44,9 +44,10 @@ def test(task, task_id, seed, test_set, video_logger, cfg, benchmark_instance):
     
     # Get and process initial state
     init_states = benchmark_instance.get_task_init_states(task_id)
-    processed_state = process_initial_state(init_states[seed], task.bddl_file, test_set, len(env.env.objects_dict))
-    assert len(env.get_sim_state()) == len(processed_state), f"env state {len(env.get_sim_state())} != processed state {len(processed_state)}"
-    obs = env.set_init_state(processed_state)
+    # processed_state = process_initial_state(init_states[seed], task.bddl_file, test_set, len(env.env.objects_dict))
+    # assert len(env.get_sim_state()) == len(processed_state), f"env state {len(env.get_sim_state())} != processed state {len(processed_state)}"
+    # obs = env.set_init_state(processed_state)
+    obs = env.set_init_state(init_states[seed])
 
     # Start video recording
     print('Instruction:', colored(env.language_instruction, 'green'))

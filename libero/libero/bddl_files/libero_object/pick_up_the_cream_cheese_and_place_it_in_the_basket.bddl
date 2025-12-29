@@ -1,6 +1,6 @@
 (define (problem LIBERO_Floor_Manipulation)
   (:domain robosuite)
-  (:language pick up cream cheese box)
+  (:language Pick the cream cheese and place it in the basket)
     (:regions
       (bin_region
           (:target floor)
@@ -62,6 +62,7 @@
 
   (:objects
     cream_cheese_1 - cream_cheese
+    basket_1 - basket
     alphabet_soup_1 - alphabet_soup
     milk_1 - milk
     tomato_sauce_1 - tomato_sauce
@@ -71,6 +72,7 @@
 
   (:obj_of_interest
     cream_cheese_1
+    basket_1
   )
 
   (:init
@@ -80,10 +82,11 @@
     (On tomato_sauce_1 floor_other_object_region_2)
     (On butter_1 floor_other_object_region_3)
     (On orange_juice_1 floor_other_object_region_4)
+    (On basket_1 floor_bin_region)
   )
 
   (:goal
-    (Or (Grasped butter_1) (Grasped cream_cheese_1))
+    (And (In cream_cheese_1 basket_1_contain_region))
   )
 
 )
