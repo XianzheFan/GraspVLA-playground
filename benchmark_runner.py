@@ -48,7 +48,8 @@ def create_environment(bddl_file_path: str, seed: int = 0, scene_properties: dic
         "camera_widths": 256,
         "control_freq": 5,
         "controller": "IK_POSE",
-        "scene_properties": scene_properties
+        "scene_properties": scene_properties,
+        "camera_depths": True,
     }
     
     env = OffScreenRenderEnv(**env_args)
