@@ -54,8 +54,9 @@ def test(task, task_id, seed, test_set, video_logger, cfg, benchmark_instance):
     if env.language_instruction == 'invalid':
         print("Invalid task, skipped")
         return
-    object_name = '_'.join(env.language_instruction.split(' ')[2:])
-    video_logger.start_recording(test_set, task_id, object_name, seed)
+    # object_name = '_'.join(env.language_instruction.split(' ')[2:])
+    video_logger.start_recording(test_set, task_id, env.language_instruction, seed)
+    # video_logger.start_recording(test_set, task_id, object_name, seed)
     agent = RemoteAgent(env.language_instruction, cfg.port)
     run_episode(env, agent, video_logger, obs, debug=cfg.debug)
     return

@@ -22,7 +22,8 @@ class VideoLogger:
         # Create save directory if it doesn't exist
         os.makedirs(save_dir, exist_ok=True)
     
-    def start_recording(self, test_set: str, task_id: str, object_name: str, seed: int):
+    def start_recording(self, test_set: str, task_id: str, language_instruction: str, seed: int):
+    # def start_recording(self, test_set: str, task_id: str, object_name: str, seed: int):
         """
         Start recording a new video.
         
@@ -32,8 +33,10 @@ class VideoLogger:
             object_name: Name of the object
             seed: Random seed
         """
-        object_name_with_underline = object_name.replace(' ', '_')
-        self.video_name = f'{self.save_dir}/{test_set}_{task_id}_pick_up_{object_name_with_underline}_{seed}.mp4'
+        # object_name_with_underline = object_name.replace(' ', '_')
+        language_instruction_with_underline = language_instruction.replace(' ', '_')
+        self.video_name = f'{self.save_dir}/{test_set}_{task_id}_{language_instruction_with_underline}_{seed}.mp4'
+        # self.video_name = f'{self.save_dir}/{test_set}_{task_id}_pick_up_{object_name_with_underline}_{seed}.mp4'
         self.new_video_name = self.video_name.replace('.mp4', '_x264.mp4')
         
         # Initialize video writer
