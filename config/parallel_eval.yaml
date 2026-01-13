@@ -12,8 +12,9 @@ seed_list_file: null # Optional: path to JSON file with seed list (for non-paral
 
 # Agent communication (base port, each process gets port + i)
 # port: 6666
-port: 6680
-# port: 6688
+# port: 6680
+# port: 6682
+port: 6688
 
 # Benchmark settings (inherited from evaluate_libero_tasks.yaml)
 benchmarks:

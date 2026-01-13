@@ -3,8 +3,9 @@ defaults:
   - _self_
 
 # Agent communication
-port: 6680
-# port: 6688
+# port: 6682
+# port: 6680
+port: 6688
 # port: 6666
 debug: false
 
