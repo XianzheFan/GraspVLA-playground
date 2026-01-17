@@ -155,7 +155,8 @@ class RemoteAgent():
         }
         self.socket.send_pyobj(data)
         response = self.socket.recv_pyobj()
-        bbox = response['debug']['bbox']
+        # bbox = response['debug']['bbox']
+        bbox = response['debug'].get("bbox", None)
 
         last_finger_state = self.finger_state
         current_pose = self.proprio_history[-1][:6]

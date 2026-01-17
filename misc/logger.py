@@ -64,9 +64,10 @@ class VideoLogger:
         # wrist_img = obs["side_view_image"][::-1]
         
         # Draw bounding boxes if provided
-        if bbox is not None:
-            front_img = self._draw_bbox(front_img, bbox[0])
-            # wrist_img = self._draw_bbox(wrist_img, bbox[1])
+        if bbox is not None and isinstance(bbox, (list, tuple)) and len(bbox) >= 1:
+            if bbox is not None:
+                front_img = self._draw_bbox(front_img, bbox[0])
+                # wrist_img = self._draw_bbox(wrist_img, bbox[1])
         
         # Concatenate images and convert color format
         # combined_img = np.concatenate([front_img, wrist_img], axis=1)

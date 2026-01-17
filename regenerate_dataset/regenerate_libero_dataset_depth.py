@@ -11,15 +11,15 @@ Notes:
 
 Usage:
     python experiments/robot/libero/regenerate_libero_dataset.py \
-        --libero_task_suite [ libero_spatial | libero_object | libero_goal | libero_10 ] \
+        --libero_task_suite [ libero_goal | libero_object | libero_goal | libero_10 ] \
         --libero_raw_data_dir <PATH TO RAW HDF5 DATASET DIR> \
         --libero_target_dir <PATH TO TARGET DIR>
 
     Example (LIBERO-Spatial):
         python experiments/robot/libero/regenerate_libero_dataset.py \
-            --libero_task_suite libero_spatial \
-            --libero_raw_data_dir ./LIBERO/libero/datasets/libero_spatial \
-            --libero_target_dir ./LIBERO/libero/datasets/libero_spatial_no_noops
+            --libero_task_suite libero_goal \
+            --libero_raw_data_dir ./LIBERO/libero/datasets/libero_goal \
+            --libero_target_dir ./LIBERO/libero/datasets/libero_goal_no_noops
 
 """
 
@@ -264,12 +264,12 @@ def main(args):
 if __name__ == "__main__":
     # Parse command-line arguments
     parser = argparse.ArgumentParser()
-    parser.add_argument("--libero_task_suite", type=str, choices=["libero_spatial", "libero_object", "libero_goal", "libero_10", "libero_90"],
-                        help="LIBERO task suite. Example: libero_spatial", required=True)
+    parser.add_argument("--libero_task_suite", type=str, choices=["libero_goal", "libero_object", "libero_goal", "libero_10", "libero_90"],
+                        help="LIBERO task suite. Example: libero_goal", required=True)
     parser.add_argument("--libero_raw_data_dir", type=str,
-                        help="Path to directory containing raw HDF5 dataset. Example: ./LIBERO/libero/datasets/libero_spatial", required=True)
+                        help="Path to directory containing raw HDF5 dataset. Example: ./LIBERO/libero/datasets/libero_goal", required=True)
     parser.add_argument("--libero_target_dir", type=str,
-                        help="Path to regenerated dataset directory. Example: ./LIBERO/libero/datasets/libero_spatial_no_noops", required=True)
+                        help="Path to regenerated dataset directory. Example: ./LIBERO/libero/datasets/libero_goal_no_noops", required=True)
     args = parser.parse_args()
 
     # Start data regeneration
@@ -278,7 +278,7 @@ if __name__ == "__main__":
 
 """
 python regenerate_libero_dataset_depth.py \
---libero_task_suite libero_spatial \
---libero_raw_data_dir /mnt/project/public/public_datasets/libero_data/libero_spatial \
---libero_target_dir /mnt/project/public/public_datasets/mix-crop-front-depth-side-290cat-200w/libero_no_noops_depth/libero_spatial
+--libero_task_suite libero_goal \
+--libero_raw_data_dir /mnt/project/public/public_datasets/libero_data/libero_goal \
+--libero_target_dir /mnt/project/public/public_datasets/mix-crop-front-depth-side-290cat-200w/libero_no_noops_depth/libero_goal
 """

@@ -19,3 +19,4 @@ data/
 libero.egg-info/
 .vscode/
 *.log
+regenerate_dataset/*.json
